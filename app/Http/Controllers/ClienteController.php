@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use App\Filters\ClienteFilter;
+use App\Http\Requests\StoreClienteRequest;
+use App\Http\Requests\UpdateClienteRequest;
 
 class ClienteController extends Controller
 {
@@ -15,16 +17,23 @@ class ClienteController extends Controller
         $clients = Cliente::where($queryItems);
         return response()->json($clients->paginate()->appends($request->query()));
     }
-    public function store(Request $request)
+    public function store(StoreClienteRequest $request)
     {
+        return Cliente::create($request->all());
     }
     public function show(Cliente $client)
     {
     }
-    public function update(Request $request, Cliente $client)
+    public function update(UpdateClienteRequest $request, Cliente $client)
     {
+        $client->update($request->all());
     }
-    public function destroy(Cliente $cliente)
+    public function destroy(Cliente $client)
     {
+        $client->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'Client deleted successfully'
+        ]);
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Prestamos;
 use Illuminate\Http\Request;
 use App\Filters\PrestamoFilter;
+use App\Http\Requests\StorePrestamoRequest;
+use App\Http\Requests\UpdatePrestamoRequest;
 
 class PrestamosController extends Controller
 {
@@ -15,16 +17,23 @@ class PrestamosController extends Controller
         $loans = Prestamos::paginate($queryItems);
         return response()->json($loans->paginate()->appends($request->query()));
     }
-    public function store(Request $request)
+    public function store(StorePrestamoRequest $request)
     {
+        return Prestamos::create($request->all());
     }
     public function show(Prestamos $loan)
     {
     }
-    public function update(Request $request, Prestamos $loan)
+    public function update(UpdatePrestamoRequest $request, Prestamos $loan)
     {
+        $loan->update($request->all());
     }
     public function destroy(Prestamos $loan)
     {
+        $loan->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'Loan deleted successfully'
+        ]);
     }
 }

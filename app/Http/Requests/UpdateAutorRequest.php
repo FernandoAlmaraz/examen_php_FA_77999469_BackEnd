@@ -13,7 +13,7 @@ class UpdateAutorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,15 @@ class UpdateAutorRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'name' => ['required', 'string', 'min:1|max:100']
+            ];
+        } else {
+            return [
+                'name' => ['required', 'string', 'min:1|max:100']
+            ];
+        }
     }
 }

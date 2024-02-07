@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Autor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreAutorRequest;
+use App\Http\Requests\UpdateAutorRequest;
 use App\Filters\AutorFilter;
 
 class AutorController extends Controller
@@ -16,16 +17,23 @@ class AutorController extends Controller
         $autors = Autor::where($queryItems);
         return response()->json($autors->paginate()->appends($request->query()));
     }
-    public function store(Request $request)
+    public function store(StoreAutorRequest $request)
     {
+        return Autor::create($request->all());
     }
     public function show(Autor $autor)
     {
     }
-    public function update(Request $request, Autor $autor)
+    public function update(UpdateAutorRequest $request, Autor $autor)
     {
+        $autor->update($request->all());
     }
     public function destroy(Autor $autor)
     {
+        $autor->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'Autor deleted successfully'
+        ]);
     }
 }
