@@ -23,6 +23,10 @@ class AutorController extends Controller
     }
     public function show(Autor $autor)
     {
+        return response()->json([
+            'status' => true,
+            'data' => $autor
+        ]);
     }
     public function update(UpdateAutorRequest $request, Autor $autor)
     {

@@ -23,6 +23,10 @@ class PrestamosController extends Controller
     }
     public function show(Prestamos $loan)
     {
+        return response()->json([
+            'status' => true,
+            'data' => $loan
+        ]);
     }
     public function update(UpdatePrestamoRequest $request, Prestamos $loan)
     {

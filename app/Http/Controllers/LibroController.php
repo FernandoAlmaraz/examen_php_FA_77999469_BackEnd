@@ -24,6 +24,10 @@ class LibroController extends Controller
     }
     public function show(Libro $book)
     {
+        return response()->json([
+            'status' => true,
+            'data' => $book
+        ]);
     }
     public function update(UpdateLibroRequest $request, Libro $book)
     {

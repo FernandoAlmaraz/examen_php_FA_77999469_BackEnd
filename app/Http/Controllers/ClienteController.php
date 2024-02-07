@@ -23,6 +23,10 @@ class ClienteController extends Controller
     }
     public function show(Cliente $client)
     {
+        return response()->json([
+            'status' => true,
+            'data' => $client
+        ]);
     }
     public function update(UpdateClienteRequest $request, Cliente $client)
     {
