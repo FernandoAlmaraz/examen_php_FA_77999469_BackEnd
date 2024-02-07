@@ -26,7 +26,7 @@ class LibroFactory extends Factory
             'autor_id' => $this->faker->numberBetween(1, 6),
             'lot' => $this->faker->unique()->numberBetween(1, 10000),
             'description' => $this->faker->paragraph(),
-            'genre' => $this->faker->unique()->numberBetween(1, 3),
+            'genre' => $this->faker->randomElement(['Acción', 'Drama', 'Comedia','Lirica','Teatral','Terror','Misterio']),
         ];
     }
 }

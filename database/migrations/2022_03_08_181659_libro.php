@@ -20,7 +20,7 @@ class Libro extends Migration
             ->onUpdate('cascade')->onDelete('restrict');
             $table->integer('lot');
             $table->text('description');
-            $table->integer('genre');
+            $table->string('genre');
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
         });

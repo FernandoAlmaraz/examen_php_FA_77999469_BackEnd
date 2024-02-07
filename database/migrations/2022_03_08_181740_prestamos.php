@@ -22,6 +22,11 @@ class Prestamos extends Migration
             $table->string('status');
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
+
+            $table->foreign('book_id')
+                ->references('id')->on('libros');
+            $table->foreign('client_id')
+                ->references('id')->on('clientes');
         });
     }
 

@@ -17,7 +17,7 @@ class Cliente extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('celphone');
+            $table->string('cellphone');
             $table->string('id_card');
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
