@@ -2,7 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AutorController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\LibroController;
+use App\Http\Controllers\PrestamosController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(
+    ['prefix' => 'v1'],
+    function () {
+        Route::apiResource('autors', AutorController::class);
+        Route::apiResource('clients', ClienteController::class);
+        Route::apiResource('books', LibroController::class);
+        Route::apiResource('loans', PrestamosController::class);
+    }
+);
