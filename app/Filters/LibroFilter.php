@@ -9,13 +9,13 @@ class LibroFilter extends ApiFilter
 {
     protected $safeParams = [
         'title' => ['eq'],
-        'autor_id' => ['eq'],
+        'autorid' => ['eq'],
         'lot' => ['eq'],
         'genre' => ['eq'],
     ];
     protected $columnMap = [
         'title' => 'title',
-        'autor_id' => 'autor_id',
+        'autorid' => 'autor_id',
         'lot' => 'lot',
         'genre' => 'genre',
     ];

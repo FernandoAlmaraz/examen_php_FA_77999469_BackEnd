@@ -11,13 +11,13 @@ class ClienteFilter extends ApiFilter
         'name' => ['eq'],
         'email' => ['eq'],
         'cellphone' => ['eq'],
-        'id_card' => ['eq', 'lt', 'lte', 'gt', 'gte'],
+        'idcard' => ['eq', 'lt', 'lte', 'gt', 'gte'],
     ];
     protected $columnMap = [
         'name' => 'name',
         'email' => 'email',
         'cellphone' => 'cellphone',
-        'id_card' => 'id_card',
+        'idcard' => 'id_card',
     ];
     protected $operatorMap = [
         'eq' => '=',
