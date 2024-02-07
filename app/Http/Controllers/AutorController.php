@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Autor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Filters\AutorFilter;
 
 class AutorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $autors = Autor::paginate();
-        return response()->json($autors);
+        $filter = new AutorFilter();
+        $queryItems = $filter->transform($request);
+        $autors = Autor::where($queryItems);
+        return response()->json($autors->paginate()->appends($request->query()));
     }
     public function store(Request $request)
     {

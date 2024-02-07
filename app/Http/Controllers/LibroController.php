@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Libro;
 use Illuminate\Http\Request;
+use App\Filters\LibroFilter;
 
 class LibroController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $books = Libro::paginate();
-        return response()->json($books);
+        $filter = new LibroFilter();
+        $queryItems = $filter->transform($request);
+        $books = Libro::where($queryItems);
+        return response()->json($books->paginate()->appends($request->query()));
     }
     public function store(Request $request)
     {

@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use App\Filters\ClienteFilter;
 
 class ClienteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $clients = Cliente::paginate();
-        return response()->json($clients);
+        $filter = new ClienteFilter();
+        $queryItems = $filter->transform($request);
+        $clients = Cliente::where($queryItems);
+        return response()->json($clients->paginate()->appends($request->query()));
     }
     public function store(Request $request)
     {

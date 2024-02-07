@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Prestamos;
 use Illuminate\Http\Request;
+use App\Filters\PrestamoFilter;
 
 class PrestamosController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $loans = Prestamos::paginate();
-        return response()->json($loans);
+        $filter = new PrestamoFilter();
+        $queryItems = $filter->transform($request);
+        $loans = Prestamos::paginate($queryItems);
+        return response()->json($loans->paginate()->appends($request->query()));
     }
     public function store(Request $request)
     {
