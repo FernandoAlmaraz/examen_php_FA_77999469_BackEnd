@@ -15,7 +15,7 @@ class Autor extends Migration
     {
         Schema::create('autors', function(Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 80);
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
         });

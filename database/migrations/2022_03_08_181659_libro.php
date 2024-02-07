@@ -15,10 +15,12 @@ class Libro extends Migration
     {
         Schema::create('libros', function(Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->integer('autor_id');
-            $table->string('lote');
+            $table->string('title',100);
+            $table->foreignId('autor_id')->constrained('autors')
+            ->onUpdate('cascade')->onDelete('restrict');
+            $table->integer('lot');
             $table->text('description');
+            $table->integer('genre');
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
         });
