@@ -10,7 +10,7 @@ class AutorController extends Controller
 {
     public function index()
     {
-        $autors = Autor::all();
+        $autors = Autor::paginate();
         return response()->json($autors);
     }
     public function store(Request $request)

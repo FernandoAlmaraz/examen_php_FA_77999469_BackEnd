@@ -9,7 +9,7 @@ class ClienteController extends Controller
 {
     public function index()
     {
-        $clients = Cliente::all();
+        $clients = Cliente::paginate();
         return response()->json($clients);
     }
     public function store(Request $request)
