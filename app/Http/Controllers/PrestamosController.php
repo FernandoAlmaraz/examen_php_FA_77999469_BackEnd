@@ -62,4 +62,31 @@ class PrestamosController extends Controller
         return
             response()->json($loans);
     }
+    public function  weeklyReport()
+    {
+        $reportWeekly = DB::table('prestamos')
+            ->select(
+                DB::raw('YEAR(loan_date) AS año'),
+                DB::raw('MONTH(loan_date) AS mes'),
+                DB::raw('FLOOR((DAY(loan_date) - 1) / 7) + 1 AS semana'),
+                DB::raw('COUNT(*) AS total_prestamos')
+            )
+            ->groupBy('año', 'mes', 'semana')
+            ->get();
+
+        return response()->json($reportWeekly);
+    }
+    public function monthlyReport()
+    {
+        $reportMonthly = DB::table('prestamos')
+            ->select(
+                DB::raw('YEAR(loan_date) AS año'),
+                DB::raw('MONTH(loan_date) AS mes'),
+                DB::raw('COUNT(*) AS total_prestamos')
+            )
+            ->groupBy('año', 'mes')
+            ->get();
+
+        return response()->json($reportMonthly);
+    }
 }

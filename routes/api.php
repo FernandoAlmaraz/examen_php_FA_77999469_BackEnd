@@ -28,5 +28,7 @@ Route::group(
         Route::apiResource('books', LibroController::class);
         Route::apiResource('loans', PrestamosController::class);
         Route::get('overdueLoans', [PrestamosController::class, 'overdueLoans']);
+        Route::get('weeklyReport', [PrestamosController::class, 'weeklyReport']);
+        Route::get('monthlyReport', [PrestamosController::class, 'monthlyReport']);
     }
 );
