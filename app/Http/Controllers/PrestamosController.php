@@ -66,12 +66,15 @@ class PrestamosController extends Controller
     {
         $reportWeekly = DB::table('prestamos')
             ->select(
-                DB::raw('YEAR(loan_date) AS año'),
-                DB::raw('MONTH(loan_date) AS mes'),
-                DB::raw('FLOOR((DAY(loan_date) - 1) / 7) + 1 AS semana'),
-                DB::raw('COUNT(*) AS total_prestamos')
+                DB::raw('YEAR(loan_date) AS year'),
+                DB::raw('MONTH(loan_date) AS month'),
+                DB::raw('FLOOR((DAY(loan_date) - 1) / 7) + 1 AS week'),
+                DB::raw('COUNT(*) AS total_loans')
             )
-            ->groupBy('año', 'mes', 'semana')
+            ->groupBy('year', 'month', 'week')
+            ->orderBy('month', 'desc')
+            ->orderBy('year', 'desc')
+            ->orderBy('week', 'desc')
             ->get();
 
         return response()->json($reportWeekly);
@@ -80,11 +83,13 @@ class PrestamosController extends Controller
     {
         $reportMonthly = DB::table('prestamos')
             ->select(
-                DB::raw('YEAR(loan_date) AS año'),
-                DB::raw('MONTH(loan_date) AS mes'),
-                DB::raw('COUNT(*) AS total_prestamos')
+                DB::raw('YEAR(loan_date) AS year'),
+                DB::raw('MONTH(loan_date) AS month'),
+                DB::raw('COUNT(*) AS total_loans')
             )
-            ->groupBy('año', 'mes')
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
             ->get();
 
         return response()->json($reportMonthly);
