@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Filters\LibroFilter;
 use App\Http\Requests\StoreLibroRequest;
 use App\Http\Requests\UpdateLibroRequest;
+use App\Http\Resources\LibroCollection;
 
 class LibroController extends Controller
 {
@@ -16,7 +17,7 @@ class LibroController extends Controller
         $filter = new LibroFilter();
         $queryItems = $filter->transform($request);
         $books = Libro::where($queryItems);
-        return response()->json($books->paginate()->appends($request->query()));
+        return new LibroCollection($books->paginate()->appends($request->query()));
     }
     public function store(StoreLibroRequest $request)
     {

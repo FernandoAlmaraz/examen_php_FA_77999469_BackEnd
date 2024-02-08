@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreAutorRequest;
 use App\Http\Requests\UpdateAutorRequest;
 use App\Filters\AutorFilter;
+use App\Http\Resources\AutorCollection;
 
 class AutorController extends Controller
 {
@@ -15,7 +16,7 @@ class AutorController extends Controller
         $filter = new AutorFilter();
         $queryItems = $filter->transform($request);
         $autors = Autor::where($queryItems);
-        return response()->json($autors->paginate()->appends($request->query()));
+        return new AutorCollection($autors->paginate()->appends($request->query()));
     }
     public function store(StoreAutorRequest $request)
     {

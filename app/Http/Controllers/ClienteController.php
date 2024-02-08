@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Filters\ClienteFilter;
 use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
+use App\Http\Resources\ClienteCollection;
 
 class ClienteController extends Controller
 {
@@ -15,7 +16,7 @@ class ClienteController extends Controller
         $filter = new ClienteFilter();
         $queryItems = $filter->transform($request);
         $clients = Cliente::where($queryItems);
-        return response()->json($clients->paginate()->appends($request->query()));
+        return new ClienteCollection($clients->paginate()->appends($request->query()));
     }
     public function store(StoreClienteRequest $request)
     {

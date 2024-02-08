@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Filters\PrestamoFilter;
 use App\Http\Requests\StorePrestamoRequest;
 use App\Http\Requests\UpdatePrestamoRequest;
+use App\Http\Resources\PrestamoCollection;
 
 class PrestamosController extends Controller
 {
@@ -15,7 +16,7 @@ class PrestamosController extends Controller
         $filter = new PrestamoFilter();
         $queryItems = $filter->transform($request);
         $loans = Prestamos::where($queryItems);
-        return response()->json($loans->paginate()->appends($request->query()));
+        return new PrestamoCollection($loans->paginate()->appends($request->query()));
     }
     public function store(StorePrestamoRequest $request)
     {
