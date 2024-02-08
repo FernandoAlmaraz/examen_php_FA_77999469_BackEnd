@@ -16,7 +16,11 @@ class LibroController extends Controller
     {
         $filter = new LibroFilter();
         $queryItems = $filter->transform($request);
+        $includeAutors = $request->query('includeAutors');
         $books = Libro::where($queryItems);
+        if ($includeAutors) {
+            $books = $books->with('autor');
+        }
         return new LibroCollection($books->paginate()->appends($request->query()));
     }
     public function store(StoreLibroRequest $request)

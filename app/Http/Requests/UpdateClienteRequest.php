@@ -23,8 +23,21 @@ class UpdateClienteRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'name' => ['required', 'string', 'min:1', 'max:100'],
+                'email' => ['required', 'string'],
+                'cellphone' => ['required', 'string'],
+                'id_card' => ['required', 'string'],
+            ];
+        } else {
+            return [
+                'name' => ['sometimes', 'string', 'min:1', 'max:100'],
+                'email' => ['sometimes', 'string'],
+                'cellphone' => ['sometimes', 'string'],
+                'id_card' => ['sometimes', 'string'],
+            ];
+        }
     }
 }

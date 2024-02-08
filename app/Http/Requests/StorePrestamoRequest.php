@@ -24,7 +24,9 @@ class StorePrestamoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'loan_date' => ['required', 'date', 'min:1', 'max:100'],
+            'loan_days' => ['required', 'int'],
+            'status' => ['required', 'string'],
         ];
     }
 }

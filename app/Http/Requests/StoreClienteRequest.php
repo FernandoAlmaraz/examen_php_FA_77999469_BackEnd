@@ -24,7 +24,10 @@ class StoreClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'string', 'min:1', 'max:100'],
+            'email' => ['required', 'string'],
+            'cellphone' => ['required', 'string'],
+            'id_card' => ['required', 'string'],
         ];
     }
 }

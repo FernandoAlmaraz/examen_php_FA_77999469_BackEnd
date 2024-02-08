@@ -30,7 +30,7 @@ class UpdateAutorRequest extends FormRequest
             ];
         } else {
             return [
-                'name' => ['required', 'string', 'min:1|max:100']
+                'name' => ['sometimes', 'string', 'min:1|max:100']
             ];
         }
     }
