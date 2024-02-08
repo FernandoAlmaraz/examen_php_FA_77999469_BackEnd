@@ -14,7 +14,7 @@ class PrestamosController extends Controller
     {
         $filter = new PrestamoFilter();
         $queryItems = $filter->transform($request);
-        $loans = Prestamos::paginate($queryItems);
+        $loans = Prestamos::where($queryItems);
         return response()->json($loans->paginate()->appends($request->query()));
     }
     public function store(StorePrestamoRequest $request)

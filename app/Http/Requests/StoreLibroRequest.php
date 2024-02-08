@@ -13,7 +13,7 @@ class StoreLibroRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class StoreLibroRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required', 'string', 'min:1', 'max:100'],
+            'lot' => ['required', 'int'],
+            'description' => ['required', 'string', 'min:1', 'max:100'],
+            'genre' => ['required', 'string'],
+            'autor_id' => ['required', 'int'],
         ];
     }
 }
