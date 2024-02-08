@@ -27,5 +27,6 @@ Route::group(
         Route::apiResource('clients', ClienteController::class);
         Route::apiResource('books', LibroController::class);
         Route::apiResource('loans', PrestamosController::class);
+        Route::get('overdueLoans', [PrestamosController::class, 'overdueLoans']);
     }
 );

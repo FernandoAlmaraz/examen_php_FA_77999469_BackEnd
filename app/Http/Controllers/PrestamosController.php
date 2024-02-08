@@ -8,6 +8,7 @@ use App\Filters\PrestamoFilter;
 use App\Http\Requests\StorePrestamoRequest;
 use App\Http\Requests\UpdatePrestamoRequest;
 use App\Http\Resources\PrestamoCollection;
+use Illuminate\Support\Facades\DB;
 
 class PrestamosController extends Controller
 {
@@ -40,5 +41,25 @@ class PrestamosController extends Controller
             'status' => true,
             'message' => 'Loan deleted successfully'
         ]);
+    }
+    public function overdueLoans()
+    {
+        $loans =
+            DB::table('prestamos')
+            ->select(
+                'libros.title AS title',
+                'prestamos.status',
+                'prestamos.id AS id',
+                'clientes.name AS name',
+                'clientes.cellphone',
+                DB::raw('DATE_ADD(prestamos.loan_date, INTERVAL prestamos.loan_days DAY) AS due_date'),
+                DB::raw('CASE WHEN DATE_ADD(prestamos.loan_date, INTERVAL prestamos.loan_days DAY) < CURDATE() THEN "Vencido" ELSE "No vencido" END AS status_due')
+            )
+            ->join('libros', 'prestamos.book_id', '=', 'libros.id')
+            ->join('clientes', 'prestamos.client_id', '=', 'clientes.id')
+            ->where('prestamos.status', '=', 'En Prestamo')
+            ->get();
+        return
+            response()->json($loans);
     }
 }
