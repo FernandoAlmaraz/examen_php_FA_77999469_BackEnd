@@ -19,7 +19,7 @@ class PrestamosController extends Controller
         $loans = Prestamos::where($queryItems);
         return new PrestamoCollection($loans->paginate()->appends($request->query()));
     }
-    public function store(StorePrestamoRequest $request)
+    public function store(Request $request)
     {
         return Prestamos::create($request->all());
     }
@@ -30,7 +30,7 @@ class PrestamosController extends Controller
             'data' => $loan
         ]);
     }
-    public function update(UpdatePrestamoRequest $request, Prestamos $loan)
+    public function update(Request $request, Prestamos $loan)
     {
         $loan->update($request->all());
     }

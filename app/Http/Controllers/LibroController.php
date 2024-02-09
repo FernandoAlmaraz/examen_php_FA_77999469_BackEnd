@@ -19,7 +19,7 @@ class LibroController extends Controller
         $books = Libro::where($queryItems);
         return new LibroCollection($books->paginate()->appends($request->query()));
     }
-    public function store(StoreLibroRequest $request)
+    public function store(Request $request)
     {
         return Libro::create($request->all());
     }
@@ -30,7 +30,7 @@ class LibroController extends Controller
             'data' => $book
         ]);
     }
-    public function update(UpdateLibroRequest $request, Libro $book)
+    public function update(Request $request, Libro $book)
     {
         $book->update($request->all());
     }

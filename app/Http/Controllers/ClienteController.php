@@ -18,7 +18,7 @@ class ClienteController extends Controller
         $clients = Cliente::where($queryItems);
         return new ClienteCollection($clients->paginate()->appends($request->query()));
     }
-    public function store(StoreClienteRequest $request)
+    public function store(Request $request)
     {
         return Cliente::create($request->all());
     }

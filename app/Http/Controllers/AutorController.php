@@ -18,7 +18,7 @@ class AutorController extends Controller
         $autors = Autor::where($queryItems);
         return new AutorCollection($autors->paginate()->appends($request->query()));
     }
-    public function store(StoreAutorRequest $request)
+    public function store(Request $request)
     {
         return Autor::create($request->all());
     }
