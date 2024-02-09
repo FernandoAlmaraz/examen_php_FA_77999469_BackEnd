@@ -1,14 +1,18 @@
 Para poder ejecutar correctamente el BackEnd se requiere de:
-•	Laravel Framework 8.83.27.
-•	PHP 8.2.12.
-•	Composer 2.6.6.
-•	XAMPP -> MYSQL Server.
+- Laravel Framework 8.83.27.
+-	PHP 8.2.12.
+-	Composer 2.6.6.
+-	XAMPP -> MYSQL Server.
 Una vez cumplidos estos requerimientos necesarios, seguir los siguientes pasos:
-•	Se debe descargar el proyecto que se encuentra en el link, en la rama main.
-•	Se debe configurar los archivos de conexión a base de datos, como el: “database.php “que se encuentra en la ruta: “config/database.php”, estos valores son en el apartado de mysql (línea 46), database (línea 51), username (línea 52), password (línea 52), con los valores que usted tenga predeterminados en su servidor de mysql, como a la base de datos, como también debe configurarse el archivo “.env.example”, de la línea 11 a la línea 16, con las configuraciones que usted tenga en su servidor.
-•	Se deben realizar la instalación de las dependencias necesarias, usando el comando “composer install”, esto descargará las dependencias especificadas en el “composer.json”.
-•	Si usted no cuenta con la base de datos poblada se debe realizar migraciones.
-•	Para iniciar el servidor se debe ejecutar: “php artisan serve” en la ruta donde se encuentra la solución o proyecto.
+-	Se debe descargar el proyecto que se encuentra en el link, en la rama main.
+-	Se debe configurar los archivos de conexión a base de datos, como el: “database.php “que se encuentra en la ruta: “config/database.php”, estos valores son en el apartado de mysql (línea 46), database (línea 51), username (línea 52), password (línea 52), con los valores que usted tenga predeterminados en su servidor de mysql, como a la base de datos, como también debe configurarse el archivo “.env.example”, de la línea 11 a la línea 16, con las configuraciones que usted tenga en su servidor.
+-	Se deben realizar la instalación de las dependencias necesarias, usando el comando “composer install”, esto descargará las dependencias especificadas en el “composer.json”.
+-	Si usted no cuenta con la base de datos poblada se debe realizar migraciones.
+-	Para iniciar el servidor se debe ejecutar: “php artisan serve” en la ruta donde se encuentra la solución o proyecto.
+- El backend cuenta con serializacion de datos en json.
+- Paginacion.
+- Regleas de validacion.
+- metodos y endpoints espeficos para el test.
 ---------------------------------------------------------------------------------------------------------------------------
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
